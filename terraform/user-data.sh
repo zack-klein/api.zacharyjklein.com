@@ -9,9 +9,4 @@ sudo systemctl start docker
 sudo chown -R ec2-user /var/run/
 eval $(aws ecr get-login --no-include-email --region us-east-1)
 
-docker run \
-  --rm \
-  -p 443:5000 \
-  --name api \
-  -d \
-  111373087273.dkr.ecr.us-east-1.amazonaws.com/api.zacharyjklein.com:stable
+docker run -p 443:5000 -d 111373087273.dkr.ecr.us-east-1.amazonaws.com/api.zacharyjklein.com:stable
