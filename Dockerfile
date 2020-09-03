@@ -18,6 +18,8 @@ COPY ./ /home/debian/api/
 ENV PYTHONPATH=/home/debian/api
 ENV PATH="/home/debian/.local/bin:$PATH"
 
+RUN chown -R debian /home/debian/api
+
 USER debian
 
 CMD ["sh", "scripts/entrypoint.sh"]
