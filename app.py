@@ -38,8 +38,15 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = SQLALCHEMY_CONN
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
+
 with app.app_context():
-    db.create_all()
+    try:
+        db.create_all()
+
+    except Exception as e:
+        logging.warning(f"Tried to create the db but failed with error: {e}")
+
+
 CORS(app, resources={r"/*": {"origins": "*"}})
 api = Api(app)
 
