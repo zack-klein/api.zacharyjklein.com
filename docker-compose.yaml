@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  api:
+    build: .
+    command: ["flask", "run", "--host=0.0.0.0"]
+    ports:
+      - 5000:5000
+    volumes:
+      - ${HOME}/.aws:/home/debian/.aws
+      - ${HOME}/.config/gcloud:/home/debian/.config/gcloud
+      - ./:/home/debian/api
+    environment:
+      - FLASK_DEBUG=1
+      - LOCAL=1
+      - CLOUD_SERVICE_PROVIDER=gcp
+      - GOOGLE_APPLICATION_CREDENTIALS=/home/debian/.config/gcloud/zack-service-account.json
+      - SECRET_STRING_NAME=snowbird_secrets
+      - GCP_PROJECT_NAME=snowbird-275222
+      - GCP_SECRET_VERSION=2
